@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 
 import './app.scss';
 
@@ -9,40 +10,37 @@ import Footer from './components/footer/funIndex.jsx';
 import Form from './components/form/funIndex.jsx';
 import Results from './components/results/funIndex.jsx';
 
-class App extends React.Component {
+function App(props) {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: null,
-      requestParams: {},
-    };
-  }
+  let [state, setState] = useState(() => {
+    return { data: null, requestParams: {} }
+  });
 
-  callApi = (requestParams) => {
-    // mock output
+  let callApi = (requestParams) => {
+    // console.log('here', requestParams);
     const data = {
       count: 2,
       results: [
-        { name: 'fake thing 1', url: 'http://fakethings.com/1' },
-        { name: 'fake thing 2', url: 'http://fakethings.com/2' },
-      ],
-    };
-    this.setState({ data, requestParams });
+        { name: 'fake think 1', url: 'http://fakethings.com/1' },
+        { name: 'fake think 2', url: 'http://fakethings.com/2' }
+      ]
+    }
+
+    setState(prevState => {
+      return { data: data, requestParams };
+    })
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        <Header />
-        <div>Request Method: {this.state.requestParams.method}</div>
-        <div>URL: {this.state.requestParams.url}</div>
-        <Form handleApiCall={this.callApi} />
-        <Results data={this.state.data} />
-        <Footer />
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <Header />
+      <div>Request Method: {state.requestParams.method}</div>
+      <div>URL: {state.requestParams.url}</div>
+      <Form handleApiCall={callApi} />
+      <Results data={state.data} />
+      <Footer />
+    </React.Fragment>
+  );
 }
 
 export default App;
