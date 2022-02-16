@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from "./form.jsx";
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 
 describe('Test if Form is rendering correctly', () => {
   it('will print GO! to the screen on a button', () => {
