@@ -5,10 +5,10 @@ import './app.scss';
 
 // Let's talk about using index.js and some other name in the component folder
 // There's pros and cons for each way of doing this ...
-import Header from './components/header/funIndex.jsx';
-import Footer from './components/footer/funIndex.jsx';
-import Form from './components/form/funIndex.jsx';
-import Results from './components/results/funIndex.jsx';
+import Header from './components/header/header.jsx';
+import Footer from './components/footer/footer.jsx';
+import Form from './components/form/form.jsx';
+import Results from './components/results/results.jsx';
 import Loader from './components/loader/loader.jsx';
 
 import axios from 'axios';
@@ -37,7 +37,7 @@ function App(props) {
         setState(prevState => {
           return { ...prevState, loading: false }
         })
-      }, 5000);
+      }, 2000);
 
     } catch (e) {
       console.log('ERROR', e);

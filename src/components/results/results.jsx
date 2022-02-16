@@ -1,4 +1,5 @@
 function Results(props) {
+  console.log(props);
   return (
     <section>
       {console.log(props.data)}

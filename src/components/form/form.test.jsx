@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from "./funIndex";
+import Form from "./form.jsx";
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom'
 

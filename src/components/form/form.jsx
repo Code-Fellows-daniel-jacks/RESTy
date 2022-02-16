@@ -4,7 +4,6 @@ import './form.scss';
 function Form(props) {
 
   const [state, setState] = useState(() => {
-    console.log('called');
     return { method: 'GET' }
   });
 
@@ -33,10 +32,10 @@ function Form(props) {
           <button type="submit">GO!</button>
         </label>
         <label className="methods" name="methods" onClick={handleClick}>
-          <span data-testid="get" id="get">GET</span>
-          <span data-testid="post" id="post">POST</span>
-          <span data-testid="put" id="put">PUT</span>
-          <span data-testid="delete" id="delete">DELETE</span>
+          <span data-testid="get" className={Object.values(state).includes('GET') ? "active" : null} id="get">GET</span>
+          <span data-testid="post" className={Object.values(state).includes('POST') ? "active" : null} id="post">POST</span>
+          <span data-testid="put" className={Object.values(state).includes('PUT') ? "active" : null} id="put">PUT</span>
+          <span data-testid="delete" className={Object.values(state).includes('DELETE') ? "active" : null} id="delete">DELETE</span>
         </label>
         <label>
           {(state.method === 'POST' || state.method === 'PUT') && <textarea name='textInput'></textarea>}

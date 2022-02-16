@@ -1,4 +1,4 @@
-import Results from "./funIndex";
+import Results from "./results.jsx";
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
 
@@ -29,10 +29,15 @@ describe('Should output results from API call', () => {
         ]
       }
     }
-    let propString = JSON.stringify(props);
 
-    render(<Results props={propString} />)
-    let dataFromScreen = screen.getByText('charmander');
-    expect(dataFromScreen).toBeInTheDocument();
+    render(<Results data={props} />)
+    let dataFromScreen1 = screen.getByText(/\bbulbasaur\b/gm);
+    let dataFromScreen2 = screen.getByText(/\bivysaur\b/gm);
+    let dataFromScreen3 = screen.getByText(/\bvenusaur\b/gm);
+    let dataFromScreen4 = screen.getByText(/\bcharmander\b/gm);
+    expect(dataFromScreen1).toBeInTheDocument();
+    expect(dataFromScreen2).toBeInTheDocument();
+    expect(dataFromScreen3).toBeInTheDocument();
+    expect(dataFromScreen4).toBeInTheDocument();
   })
 })
