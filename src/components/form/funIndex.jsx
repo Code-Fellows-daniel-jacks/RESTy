@@ -3,7 +3,9 @@ import './form.scss';
 
 function Form(props) {
 
-  const [state, setState] = useState({ method: 'GET', url: 'https://pokeapi.co/api/v2/pokemon' })
+  const [state, setState] = useState(() => {
+    return { method: 'GET' }
+  });
 
   function handleSubmit(e) {
     e.preventDefault();

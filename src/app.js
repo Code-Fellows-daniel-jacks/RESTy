@@ -9,25 +9,43 @@ import Header from './components/header/funIndex.jsx';
 import Footer from './components/footer/funIndex.jsx';
 import Form from './components/form/funIndex.jsx';
 import Results from './components/results/funIndex.jsx';
+import Loader from './components/loader/loader.jsx';
+
+import axios from 'axios';
 
 function App(props) {
 
   let [state, setState] = useState(() => {
-    return { data: null, requestParams: {} }
+    return { data: null, requestParams: {}, loading: false }
   });
 
-  let callApi = (requestParams) => {
-    // console.log('here', requestParams);
-    const data = {
-      count: 2,
-      results: [
-        { name: 'fake think 1', url: 'http://fakethings.com/1' },
-        { name: 'fake think 2', url: 'http://fakethings.com/2' }
-      ]
+  let callApi = async (requestParams) => {
+    let apiResponse;
+    setState(prevState => {
+      return { ...prevState, loading: true }
+    })
+
+    try {
+      apiResponse = await axios({
+        method: requestParams.method.toLowerCase(),
+        url: requestParams.url,
+        data: requestParams.textArea
+      })
+      if (!apiResponse.data) throw new Error('error');
+
+      setTimeout(() => {
+        setState(prevState => {
+          return { ...prevState, loading: false }
+        })
+      }, 5000);
+
+    } catch (e) {
+      console.log('ERROR', e);
+      return
     }
 
     setState(prevState => {
-      return { data: data, requestParams };
+      return { ...prevState, data: apiResponse.data, requestParams };
     })
   }
 
@@ -37,7 +55,7 @@ function App(props) {
       <div>Request Method: {state.requestParams.method}</div>
       <div>URL: {state.requestParams.url}</div>
       <Form handleApiCall={callApi} />
-      <Results data={state.data} />
+      {state.loading ? <Loader /> : <Results data={state.data} />}
       <Footer />
     </React.Fragment>
   );
