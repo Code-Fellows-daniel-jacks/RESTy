@@ -14,14 +14,14 @@ describe('Test if Form is rendering correctly', () => {
     render(<Form />)
     jest.spyOn(React, "useState");
 
-    let getBtn = screen.getByTestId('get');
-    fireEvent.click(getBtn);
     let putBtn = screen.getByTestId('put');
     fireEvent.click(putBtn);
     let postBtn = screen.getByTestId('post');
     fireEvent.click(postBtn);
     let deleteBtn = screen.getByTestId('delete');
     fireEvent.click(deleteBtn);
+    let getBtn = screen.getByTestId('get');
+    fireEvent.click(getBtn);
 
     expect(React.useState).toHaveBeenCalledTimes(4);
   })
