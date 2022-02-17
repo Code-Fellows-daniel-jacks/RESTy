@@ -15,12 +15,12 @@ import axios from 'axios';
 
 function App(props) {
 
-  let [data, setData] = useState(null)
-  let [rqstParams, setRqstParams] = useState({})
-  let [loading, setLoading] = useState(false)
+  let [data, setData] = useState(null);
+  let [rqstParams, setRqstParams] = useState({});
+  let [loading, setLoading] = useState(false);
   let [error, setError] = useState({ status: false, message: '' });
 
-  let callApi = async (requestParams) => {
+  let callApi = (requestParams) => {
     setLoading(true);
     setError(false);
     if (!requestParams.url) {
