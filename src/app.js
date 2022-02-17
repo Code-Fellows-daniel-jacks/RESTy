@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 import './app.scss';
@@ -15,47 +15,61 @@ import axios from 'axios';
 
 function App(props) {
 
-  let [state, setState] = useState(() => {
-    return { data: null, requestParams: {}, loading: false }
-  });
+  let [data, setData] = useState(null)
+  let [rqstParams, setRqstParams] = useState({})
+  let [loading, setLoading] = useState(false)
+  let [error, setError] = useState({ status: false, message: '' });
 
   let callApi = async (requestParams) => {
-    let apiResponse;
-    setState(prevState => {
-      return { ...prevState, loading: true }
-    })
+    setLoading(true);
+    setError(false);
+    if (!requestParams.url) {
+      setError(() => {
+        return { status: true, message: 'Please ensure you filled out all data fields' }
+      });
+      setLoading(false);
+      setData(null);
+      return;
+    }
+    setRqstParams(requestParams);
+  }
 
-    try {
-      apiResponse = await axios({
-        method: requestParams.method.toLowerCase(),
-        url: requestParams.url,
-        data: requestParams.textArea
-      })
-      if (!apiResponse.data) throw new Error('error');
-
-      setTimeout(() => {
-        setState(prevState => {
-          return { ...prevState, loading: false }
+  useEffect(() => {
+    async function getData() {
+      let apiResponse;
+      try {
+        apiResponse = await axios({
+          method: rqstParams.method.toLowerCase(),
+          url: rqstParams.url,
+          data: rqstParams.textArea
         })
-      }, 2000);
 
-    } catch (e) {
-      console.log('ERROR', e);
-      return
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+
+        setData(apiResponse.data);
+      } catch (e) {
+        setLoading(false);
+        setData(null);
+        setError(() => {
+          return { status: true, message: 'Error handling request, please try a different method or different URL' }
+        });
+        return
+      }
     }
 
-    setState(prevState => {
-      return { ...prevState, data: apiResponse.data, requestParams };
-    })
-  }
+    getData();
+  }, [rqstParams]);
 
   return (
     <React.Fragment>
       <Header />
-      <div>Request Method: {state.requestParams.method}</div>
-      <div>URL: {state.requestParams.url}</div>
+      <div>Request Method: {rqstParams.method}</div>
+      <div>URL: {rqstParams.url}</div>
+      {error.status === true && <div>{error.message}</div>}  
       <Form handleApiCall={callApi} />
-      {state.loading ? <Loader /> : <Results data={state.data} />}
+      {loading ? <Loader /> : <Results data={data} />}
       <Footer />
     </React.Fragment>
   );

@@ -1,16 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './form.scss';
 
 function Form(props) {
 
-  const [state, setState] = useState(() => {
-    return { method: 'GET' }
-  });
+  const [method, setMethod] = useState('GET');
 
   function handleSubmit(e) {
     e.preventDefault();
     let requestParams = {
-      method: state.method,
+      method: method,
       url: e.target.url.value,
       textArea: e.target.textInput && e.target.textInput.value,
     }
@@ -18,9 +16,7 @@ function Form(props) {
   }
 
   function handleClick(e) {
-    setState(prevState => {
-      return { ...prevState, method: e.target.id.toUpperCase() }
-    })
+    setMethod(e.target.id.toUpperCase());
   }
 
   return (
@@ -32,13 +28,13 @@ function Form(props) {
           <button type="submit">GO!</button>
         </label>
         <label className="methods" name="methods" onClick={handleClick}>
-          <span data-testid="get" className={Object.values(state).includes('GET') ? "active" : null} id="get">GET</span>
-          <span data-testid="post" className={Object.values(state).includes('POST') ? "active" : null} id="post">POST</span>
-          <span data-testid="put" className={Object.values(state).includes('PUT') ? "active" : null} id="put">PUT</span>
-          <span data-testid="delete" className={Object.values(state).includes('DELETE') ? "active" : null} id="delete">DELETE</span>
+          <span data-testid="get" className={method === 'GET' ? "active" : null} id="get">GET</span>
+          <span data-testid="post" className={method === 'POST' ? "active" : null} id="post">POST</span>
+          <span data-testid="put" className={method === 'PUT' ? "active" : null} id="put">PUT</span>
+          <span data-testid="delete" className={method === 'DELETE' ? "active" : null} id="delete">DELETE</span>
         </label>
         <label>
-          {(state.method === 'POST' || state.method === 'PUT') && <textarea name='textInput'></textarea>}
+          {(method === 'POST' || method === 'PUT') && <textarea name='textInput'></textarea>}
         </label>
       </form>
     </>
