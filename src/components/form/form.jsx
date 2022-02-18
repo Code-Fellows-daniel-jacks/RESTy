@@ -44,12 +44,11 @@ function Form({ dispatch }) {
   }
 
   return (
-    <>
       <form onSubmit={handleSubmit}>
         <label >
           <span>URL: </span>
           <input data-testid="urlArea" name='url' type='text' onChange={handleChange} />
-          <button data-testid="GO" type="submit">GO!</button>
+        <button data-testid="GO" className='GO' type="submit">GO!</button>
         </label>
         <label data-testid="methodInput" className="methods" name="methods" onClick={handleClick}>
           <span data-testid="get" className={method === 'get' ? "active" : null} id="get">GET</span>
@@ -60,8 +59,7 @@ function Form({ dispatch }) {
         <label>
           {(method === 'post' || method === 'put') && <textarea onChange={handleChange} name='textInput'></textarea>}
         </label>
-      </form>
-    </>
+    </form>
   );
 }
 
