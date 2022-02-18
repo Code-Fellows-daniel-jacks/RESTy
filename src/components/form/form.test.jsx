@@ -23,6 +23,6 @@ describe('Test if Form is rendering correctly', () => {
     let getBtn = screen.getByTestId('get');
     fireEvent.click(getBtn);
 
-    expect(React.useState).toHaveBeenCalledTimes(4);
+    expect(React.useState).toHaveBeenCalledTimes(8);
   })
 })

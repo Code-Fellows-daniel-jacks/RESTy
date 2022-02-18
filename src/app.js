@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
+import { initialState, reducer } from './components/reducer/reducer.jsx';
 
 import './app.scss';
 
-// Let's talk about using index.js and some other name in the component folder
-// There's pros and cons for each way of doing this ...
 import Header from './components/header/header.jsx';
 import Footer from './components/footer/footer.jsx';
 import Form from './components/form/form.jsx';
@@ -14,47 +12,47 @@ import Loader from './components/loader/loader.jsx';
 import axios from 'axios';
 
 function App(props) {
-
-  let [data, setData] = useState(null);
-  let [rqstParams, setRqstParams] = useState({});
-  let [loading, setLoading] = useState(false);
-  let [error, setError] = useState({ status: false, message: '' });
+  let [state, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
+  let [rqstParams, setRqstParams] = useState();
+  console.log(state);
 
   let callApi = (requestParams) => {
-    setLoading(true);
-    setError(false);
+    dispatch({ type: 'SET_LOADING', loading: true });
+    dispatch({ type: 'SET_ERROR', error: { status: false } });
     if (!requestParams.url) {
-      setError(() => {
-        return { status: true, message: 'Please ensure you filled out all data fields' }
-      });
-      setLoading(false);
-      setData(null);
+      dispatch({ type: 'SET_ERROR', error: { status: true, message: 'Please ensure you fill out entire form' } });
+
+      dispatch({ type: 'SET_LOADING', loading: false });
+      dispatch({ type: 'SET_DATA', data: null });
       return;
     }
-    setRqstParams(requestParams);
+    dispatch({ type: 'SET_RQST_PARAMS', rqstParams: requestParams });
   }
 
   useEffect(() => {
     async function getData() {
       let apiResponse;
       try {
+        console.log(state.rqstParams);
         apiResponse = await axios({
-          method: rqstParams.method.toLowerCase(),
-          url: rqstParams.url,
-          data: rqstParams.textArea
+          method: state.rqstParams.method.toLowerCase(),
+          url: state.rqstParams.url,
+          data: state.rqstParams.textArea
         })
 
         setTimeout(() => {
-          setLoading(false);
-        }, 2000);
+          dispatch({ type: 'SET_LOADING', loading: false });
+        }, 2500);
 
-        setData(apiResponse.data);
+        dispatch({ type: 'SET_DATA', data: apiResponse.data });
       } catch (e) {
-        setLoading(false);
-        setData(null);
-        setError(() => {
-          return { status: true, message: 'Error handling request, please try a different method or different URL' }
-        });
+        console.log(e);
+        dispatch({ type: 'SET_LOADING', loading: false });
+        dispatch({ type: 'SET_DATA', data: null });
+        dispatch({ type: 'SET_ERROR', error: { status: true, message: 'Error handling request, please try a different method or different URL' } });
         return
       }
     }
@@ -65,11 +63,11 @@ function App(props) {
   return (
     <React.Fragment>
       <Header />
-      <div>Request Method: {rqstParams.method}</div>
-      <div>URL: {rqstParams.url}</div>
-      {error.status === true && <div>{error.message}</div>}  
+      <div>Request Method: {state.rqstParams.method}</div>
+      <div>URL: {state.rqstParams.url}</div>
+      {state.error.status === true && <div>{state.error.message}</div>}  
       <Form handleApiCall={callApi} />
-      {loading ? <Loader /> : <Results data={data} />}
+      {state.loading ? <Loader /> : <Results data={state.data} />}
       <Footer />
     </React.Fragment>
   );
