@@ -1,43 +1,67 @@
 import { useState } from 'react';
 import './form.scss';
 
-function Form(props) {
+function Form({ dispatch }) {
 
-  const [method, setMethod] = useState('GET');
+  // these are used for local state within the form, and when we submit, we use the dispatch passed in from App in order to edit the App's state.
+
+  const [method, setMethod] = useState(() => 'get');
+  const [url, setUrl] = useState(() => '');
+  const [textInput, setTextInput] = useState(() => '');
 
   function handleSubmit(e) {
     e.preventDefault();
     let requestParams = {
       method: method,
-      url: e.target.url.value,
-      textArea: e.target.textInput && e.target.textInput.value,
+      url: url,
+      textArea: textInput,
     }
-    props.handleApiCall(requestParams);
+
+    if (!requestParams.url) {
+      dispatch({ type: 'SET_ERROR', error: { status: true, message: 'Please input an endpoint URL' } });
+      dispatch({ type: 'SET_DATA', data: null });
+      return;
+    }
+
+    dispatch({ type: 'SET_LOADING', loading: true });
+    dispatch({ type: 'SET_ERROR', error: { status: false } });
+    dispatch({ type: 'SET_HISTORY', history: requestParams })
+    dispatch({ type: 'SET_RQST_PARAMS', rqstParams: requestParams });
   }
 
   function handleClick(e) {
-    setMethod(e.target.id.toUpperCase());
+    e.preventDefault();
+    setMethod(e.target.id);
+  }
+
+  function handleChange(e) {
+    e.preventDefault();
+    if (e.target.name === 'url') {
+      setUrl(e.target.value);
+    } else if (e.target.name === 'textInput') {
+      setTextInput(e.target.value);
+    }
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label >
+    <form onSubmit={handleSubmit}>
+      <div className='urlArea'>
+        <label>
           <span>URL: </span>
-          <input name='url' type='text' />
-          <button data-testid="GO" type="submit">GO!</button>
+          <input data-testid="urlArea" name='url' type='text' onChange={handleChange} />
+        <button data-testid="GO" className='GO' type="submit">GO!</button>
         </label>
-        <label className="methods" name="methods" onClick={handleClick}>
-          <span data-testid="get" className={method === 'GET' ? "active" : null} id="get">GET</span>
-          <span data-testid="post" className={method === 'POST' ? "active" : null} id="post">POST</span>
-          <span data-testid="put" className={method === 'PUT' ? "active" : null} id="put">PUT</span>
-          <span data-testid="delete" className={method === 'DELETE' ? "active" : null} id="delete">DELETE</span>
+      </div>
+        <label data-testid="methodInput" className="methods" name="methods" onClick={handleClick}>
+          <span data-testid="get" className={method === 'get' ? "active" : null} id="get">GET</span>
+          <span data-testid="post" className={method === 'post' ? "active" : null} id="post">POST</span>
+          <span data-testid="put" className={method === 'put' ? "active" : null} id="put">PUT</span>
+          <span data-testid="delete" className={method === 'delete' ? "active" : null} id="delete">DELETE</span>
         </label>
         <label>
-          {(method === 'POST' || method === 'PUT') && <textarea name='textInput'></textarea>}
+          {(method === 'post' || method === 'put') && <textarea onChange={handleChange} name='textInput'></textarea>}
         </label>
-      </form>
-    </>
+    </form>
   );
 }
 
