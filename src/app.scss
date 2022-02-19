@@ -23,6 +23,7 @@ html, body {
   padding: 0;
 }
 
+
 body {
   background: $star-command-blue;
   height: 100%;
@@ -31,6 +32,15 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+  }
+
+  header {
+    background: darken($star-command-blue, 25);
+    border-bottom: 1px solid rgb(70, 70, 70);
+    color: #eee;
+    padding: 0;
+    margin: 0;
+    text-align: left;
   }
 
   footer {
@@ -51,14 +61,12 @@ body {
     padding: 1rem;
     background-color: $ivory;
     border: solid 1.5px $rich-black-fogra-29;
-    box-shadow: 3px -3px black;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.301);
   }
-  header {
-    background: darken($star-command-blue, 25);
-    border-bottom: 1px solid rgb(70, 70, 70);
-    color: #eee;
-    padding: 0;
-    margin: 0;
-    text-align: left;
+
+  .dataContainer {
+    display: flex;
+    position: absolute;
+    top: 15rem;
   }
 }

@@ -55,8 +55,10 @@ function App(props) {
         {state.error.status === true && <div>{state.error.message}</div>}  
       </div>
       <Form dispatch={dispatch} />
-      <History history={state.history} dispatch={dispatch} />
-      {state.loading ? <Loader /> : <Results data={state.data} />}
+      <div className='dataContainer'>
+        <History history={state.history} dispatch={dispatch} />
+        {state.loading ? <Loader /> : <Results data={state.data} />}
+      </div>
       <Footer />
     </React.Fragment>
   );
