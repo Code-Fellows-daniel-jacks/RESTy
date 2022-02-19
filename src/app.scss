@@ -41,6 +41,18 @@ body {
     color: #eee;
   }
 
+  .prevRequest {
+    display: inline;
+    width: 18rem;
+    max-width: auto;
+    position: relative;
+    left: 8px;
+    top: 8px;
+    padding: 1rem;
+    background-color: $ivory;
+    border: solid 1.5px $rich-black-fogra-29;
+    box-shadow: 3px -3px black;
+  }
   header {
     background: darken($star-command-blue, 25);
     border-bottom: 1px solid rgb(70, 70, 70);
