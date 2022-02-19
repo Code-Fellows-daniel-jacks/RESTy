@@ -49,9 +49,11 @@ function App(props) {
   return (
     <React.Fragment>
       <Header />
-      <div>Request Method: {state.rqstParams.method}</div>
-      <div>URL: {state.rqstParams.url}</div>
-      {state.error.status === true && <div>{state.error.message}</div>}  
+      <div className='prevRequest'>
+        <div>Request Method: {state.rqstParams.method}</div>
+        <div>URL: {state.rqstParams.url}</div>
+        {state.error.status === true && <div>{state.error.message}</div>}  
+      </div>
       <Form dispatch={dispatch} />
       <History history={state.history} dispatch={dispatch} />
       {state.loading ? <Loader /> : <Results data={state.data} />}
