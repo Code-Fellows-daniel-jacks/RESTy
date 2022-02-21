@@ -20,11 +20,17 @@ function App() {
     if (isMounted.current) {
       async function getData() {
         let apiResponse;
+        let dataToSend;
+
         try {
+          if (state.rqstParams.textArea.length > 0 && (state.rqstParams.method === 'post' || state.rqstParams.method === 'put')) {
+            dataToSend = JSON.parse(state.rqstParams.textArea)
+          }
+
           apiResponse = await axios({
             method: state.rqstParams.method,
             url: state.rqstParams.url,
-            data: { ...JSON.parse(state.rqstParams.textArea) }
+            data: { ...dataToSend }
           })
 
           setTimeout(() => {
