@@ -12,21 +12,25 @@ import Loader from './components/loader/loader.jsx';
 
 import axios from 'axios';
 
-function App(props) {
+function App() {
   let [state, dispatch] = useReducer(reducer, initialState);
 
   const isMounted = useRef(false); // used to ensure our useEffect does not trigger on first mount
-
   useEffect(() => {
     if (isMounted.current) {
       async function getData() {
         let apiResponse;
+        let dataToSend;
 
         try {
+          if (state.rqstParams.textArea.length > 0 && (state.rqstParams.method === 'post' || state.rqstParams.method === 'put')) {
+            dataToSend = JSON.parse(state.rqstParams.textArea)
+          }
+
           apiResponse = await axios({
             method: state.rqstParams.method,
             url: state.rqstParams.url,
-            data: state.rqstParams.textArea
+            data: { ...dataToSend }
           })
 
           setTimeout(() => {
@@ -34,6 +38,7 @@ function App(props) {
           }, 2500);
           dispatch({ type: 'SET_DATA', data: apiResponse.data });
         } catch (e) {
+          console.log(e);
           dispatch({ type: 'SET_LOADING', loading: false });
           dispatch({ type: 'SET_DATA', data: null });
           dispatch({ type: 'SET_ERROR', error: { status: true, message: 'Error handling request, please try a different method or different URL' } });
@@ -55,8 +60,10 @@ function App(props) {
         {state.error.status === true && <div>{state.error.message}</div>}  
       </div>
       <Form dispatch={dispatch} />
-      <History history={state.history} dispatch={dispatch} />
-      {state.loading ? <Loader /> : <Results data={state.data} />}
+      <div className='dataContainer'>
+        <History history={state.history} dispatch={dispatch} />
+        {state.loading ? <Loader /> : <Results data={state.data} />}
+      </div>
       <Footer />
     </React.Fragment>
   );

@@ -4,6 +4,8 @@ $orange-peel: rgba(255, 159, 28, 1);
 $honey-yellow: rgba(251, 179, 35, 1);
 $star-command-blue: rgba(0, 124, 190, 1);
 $ivory: rgba(255, 252, 232, 1);
+$silver: #C1C1C2;
+$dutch-white: #FDEAC4;
 
 /* SCSS Gradient */
 $gradient-top: linear-gradient(0deg, #0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
@@ -21,7 +23,9 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
+
 
 body {
   background: $star-command-blue;
@@ -33,14 +37,6 @@ body {
     height: 100%;
   }
 
-  footer {
-    background: darken($star-command-blue, 25);
-    border-top: 1px solid rgb(70, 70, 70);
-    padding: 1em 3em;
-    margin: 0;
-    color: #eee;
-  }
-
   header {
     background: darken($star-command-blue, 25);
     border-bottom: 1px solid rgb(70, 70, 70);
@@ -48,5 +44,86 @@ body {
     padding: 0;
     margin: 0;
     text-align: left;
+  }
+
+  footer {
+    background: darken($star-command-blue, 25);
+    border-top: 1px solid rgb(70, 70, 70);
+    padding: 1em 0em;
+    position: absolute;
+    width: 100vw;
+    bottom: 0px;
+    color: #eee;
+  }
+
+  .prevRequest {
+    display: inline;
+    width: 18rem;
+    max-width: auto;
+    position: relative;
+    left: 8px;
+    top: 8px;
+    padding: 1rem;
+    background-color: $ivory;
+    border: solid 1.5px $rich-black-fogra-29;
+    box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
+  }
+
+  .dataContainer {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    width: 100vw;
+    top: 12.5rem;
+    .history {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 20rem;
+      width: 20rem;
+      overflow-y: scroll;
+      background-color: $ivory;
+      border: solid 1.5px $rich-black-fogra-29;
+      box-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.301);
+      &:hover {
+        box-shadow: 1px 1px 10px 1px $ivory;
+      }
+      h1 {
+        text-align: center;
+      }
+      .even {
+        cursor: pointer;
+        background-color: $dutch-white;
+        border: solid 1px $rich-black-fogra-29;
+        box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
+        position: relative;
+        padding: 5px;
+        width: 15rem;
+        border-radius: 5px;
+        margin-top: 2px;
+      }
+      .odd {
+        cursor: pointer;
+        background-color: $silver;
+        border: solid 1px $rich-black-fogra-29;
+        box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
+        position: relative;
+        padding: 5px;
+        width: 15rem;
+        border-radius: 5px;
+        margin-top: 2px;
+      }
+    }
+    .results {
+      height: 20rem;
+      width: 38rem;
+      overflow-y: scroll;
+      background-color: $ivory;
+      border: solid 1.5px $rich-black-fogra-29;
+      box-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.301);
+      &:hover {
+        box-shadow: 1px 1px 10px 1px $ivory;
+      }
+    }
   }
 }
