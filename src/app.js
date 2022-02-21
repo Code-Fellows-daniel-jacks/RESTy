@@ -16,17 +16,15 @@ function App() {
   let [state, dispatch] = useReducer(reducer, initialState);
 
   const isMounted = useRef(false); // used to ensure our useEffect does not trigger on first mount
-
   useEffect(() => {
     if (isMounted.current) {
       async function getData() {
         let apiResponse;
-
         try {
           apiResponse = await axios({
             method: state.rqstParams.method,
             url: state.rqstParams.url,
-            data: state.rqstParams.textArea
+            data: { ...JSON.parse(state.rqstParams.textArea) }
           })
 
           setTimeout(() => {
@@ -34,6 +32,7 @@ function App() {
           }, 2500);
           dispatch({ type: 'SET_DATA', data: apiResponse.data });
         } catch (e) {
+          console.log(e);
           dispatch({ type: 'SET_LOADING', loading: false });
           dispatch({ type: 'SET_DATA', data: null });
           dispatch({ type: 'SET_ERROR', error: { status: true, message: 'Error handling request, please try a different method or different URL' } });

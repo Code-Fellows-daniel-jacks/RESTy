@@ -4,7 +4,6 @@ export default class HistoryInstance extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    console.log(this.props);
   }
 
   handleClick = (e) => {
@@ -30,7 +29,7 @@ export default class HistoryInstance extends Component {
 
   render() {
     return (
-      <div key={this.props.entry.method} onClick={this.handleClick}>
+      <div key={this.props.entry.method} onClick={this.handleClick} className={(this.props.idx % 2 === 0) ? 'even' : 'odd'}>
         <div name='method' value={this.props.entry.method} >Method: {this.props.entry.method}</div>
         <div name='url' value={this.props.entry.url} >URL: {this.props.entry.url}</div>
         <div name='body' value={this.props.entry.body} >Body: {this.props.entry.textArea}</div>

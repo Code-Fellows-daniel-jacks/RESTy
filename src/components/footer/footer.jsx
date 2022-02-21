@@ -1,6 +1,10 @@
 function Footer() {
   return (
-    <footer>&copy; 2018</footer>
+    <footer>
+      <div>
+        Project by: Daniel Jackson
+      </div>
+    </footer>
   )
 }
 export default Footer;
