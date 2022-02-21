@@ -46,8 +46,10 @@ body {
   footer {
     background: darken($star-command-blue, 25);
     border-top: 1px solid rgb(70, 70, 70);
-    padding: 1em 3em;
-    margin: 0;
+    padding: 1em 0em;
+    position: absolute;
+    width: 100vw;
+    bottom: 0px;
     color: #eee;
   }
 
@@ -67,6 +69,14 @@ body {
   .dataContainer {
     display: flex;
     position: absolute;
+    width: 100vw;
     top: 15rem;
+    justify-content: space-around;
+    .history {
+      background-color: red;
+    }
+    .results {
+      background-color: blue;
+    }
   }
 }

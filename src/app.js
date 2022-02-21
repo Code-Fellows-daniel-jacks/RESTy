@@ -12,7 +12,7 @@ import Loader from './components/loader/loader.jsx';
 
 import axios from 'axios';
 
-function App(props) {
+function App() {
   let [state, dispatch] = useReducer(reducer, initialState);
 
   const isMounted = useRef(false); // used to ensure our useEffect does not trigger on first mount
