@@ -19,52 +19,15 @@ $gradient-bottom-left: linear-gradient(315deg, #0e131fff, #ff9f1cff, #fbb323ff, 
 $gradient-radial: radial-gradient(#0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
 
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
 
-
-body {
-  background: $star-command-blue;
-  height: 100%;
-
-  #root {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  footer {
-    background: darken($star-command-blue, 25);
-    border-top: 1px solid rgb(70, 70, 70);
-    padding: 1em 0em;
-    position: absolute;
-    width: 100vw;
-    bottom: 0px;
-    color: #eee;
-  }
-
-  .prevRequest {
-    display: inline;
-    width: 28rem;
-    max-width: auto;
-    position: relative;
-    left: 13.25rem;
-    top: 1rem;
-    padding: 1rem;
-    background-color: $ivory;
-    border: solid 1.5px $rich-black-fogra-29;
-    box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
-  }
-
-  .dataContainer {
-    display: flex;
-    justify-content: space-evenly;
-    position: absolute;
-    width: 100vw;
-    top: 12.5rem;
+.results {
+  height: 40rem;
+  width: 50rem;
+  overflow-y: scroll;
+  background-color: rgb(21, 21, 21);
+  border: solid 1.5px $honey-yellow;
+  box-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.301);
+  &:hover {
+    box-shadow: 1px 1px 10px 1px $ivory;
   }
 }

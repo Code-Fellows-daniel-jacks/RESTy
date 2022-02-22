@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import LoadingButton from '@mui/lab/LoadingButton';
 import './form.scss';
 
 function Form({ dispatch }) {
@@ -49,7 +50,14 @@ function Form({ dispatch }) {
         <label>
           <span>URL: </span>
           <input data-testid="urlArea" name='url' type='text' onChange={handleChange} />
-        <button data-testid="GO" className='GO' type="submit">GO!</button>
+          <LoadingButton
+            type="submit"
+            // loading={loading}
+            loadingIndicator="Loading..."
+            variant="outlined"
+          >
+            Fetch data
+          </LoadingButton>
         </label>
       </div>
         <label data-testid="methodInput" className="methods" name="methods" onClick={handleClick}>
@@ -59,7 +67,7 @@ function Form({ dispatch }) {
           <span data-testid="delete" className={method === 'delete' ? "active" : null} id="delete">DELETE</span>
         </label>
         <label>
-          {(method === 'post' || method === 'put') && <textarea onChange={handleChange} name='textInput'></textarea>}
+        {(method === 'post' || method === 'put') && <textarea rows="10" cols="50" onChange={handleChange} name='textInput'></textarea>}
         </label>
     </form>
   );
