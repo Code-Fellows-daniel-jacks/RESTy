@@ -41,14 +41,6 @@ form {
     top: 2.3rem;
     box-shadow: 5px 5px $rich-black-fogra-29;
   }
-  .GO {
-    background-color: $honey-yellow;
-    border: solid 1.2px black;
-    cursor: pointer;
-    &:hover, &.active {
-      background: $orange-peel;
-    }
-  }
   .urlArea {
     background-color: rgb(21, 21, 21);
     border-bottom: 1px solid $orange-peel;

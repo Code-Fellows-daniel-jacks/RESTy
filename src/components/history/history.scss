@@ -41,7 +41,7 @@ $gradient-radial: radial-gradient(#0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #f
   .even {
     cursor: pointer;
     background-color: $rhythm-trans;
-    border: solid 1.5px darken($honey-yellow, 10);
+    border: solid 1.5px darken($honey-yellow, 1n0);
     box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
     position: relative;
     padding: 5px;
