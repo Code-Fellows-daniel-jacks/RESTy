@@ -6,6 +6,8 @@ $star-command-blue: rgba(0, 124, 190, 1);
 $ivory: rgba(255, 252, 232, 1);
 $silver: #C1C1C2;
 $dutch-white: #FDEAC4;
+$space-cadet: rgba(37, 40, 61, 1);
+
 
 /* SCSS Gradient */
 $gradient-top: linear-gradient(0deg, #0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
@@ -25,7 +27,7 @@ $gradient-radial: radial-gradient(#0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #f
   width: 50rem;
   overflow-y: scroll;
   background-color: rgb(21, 21, 21);
-  border: solid 1.5px $honey-yellow;
+  border: solid 1.5px $space-cadet;
   box-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.301);
   &:hover {
     box-shadow: 1px 1px 10px 1px $ivory;

@@ -6,6 +6,9 @@ $star-command-blue: rgba(0, 124, 190, 1);
 $ivory: rgba(255, 252, 232, 1);
 $silver: #C1C1C2;
 $dutch-white: #FDEAC4;
+$rhythm-trans: rgba(114, 124, 151, .7);
+$space-cadet: rgba(37, 40, 61, 1);
+
 
 /* SCSS Gradient */
 $gradient-top: linear-gradient(0deg, #0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
@@ -26,34 +29,33 @@ $gradient-radial: radial-gradient(#0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #f
   width: 30rem;
   overflow-y: scroll;
   background-color: rgb(21, 21, 21);
-  border: solid 1.5px $honey-yellow;
+  border: solid 1.5px $space-cadet;
   box-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.301);
   &:hover {
     box-shadow: 1px 1px 10px 1px $ivory;
   }
   h1 {
     text-align: center;
+    color: $ivory;
   }
   .even {
     cursor: pointer;
-    background-color: $dutch-white;
-    border: solid 1px $rich-black-fogra-29;
+    background-color: $rhythm-trans;
+    border: solid 1.5px darken($honey-yellow, 10);
     box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
     position: relative;
     padding: 5px;
-    width: 15rem;
-    border-radius: 5px;
+    width: 25rem;
     margin-top: 2px;
   }
   .odd {
     cursor: pointer;
-    background-color: $silver;
-    border: solid 1px $rich-black-fogra-29;
+    background-color: $rhythm-trans;
+    border: solid 1.5px darken($orange-peel, 30);
     box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
     position: relative;
     padding: 5px;
-    width: 15rem;
-    border-radius: 5px;
+    width: 25rem;
     margin-top: 2px;
   }
 }

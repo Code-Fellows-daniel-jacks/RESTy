@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
+import Button from '@mui/material/Button';
 import './form.scss';
 
 function Form({ dispatch }) {
@@ -48,7 +49,7 @@ function Form({ dispatch }) {
     <form onSubmit={handleSubmit}>
       <div className='urlArea'>
         <label>
-          <span>URL: </span>
+          <div>URL: </div>
           <input data-testid="urlArea" name='url' type='text' onChange={handleChange} />
           <LoadingButton
             type="submit"
@@ -61,10 +62,10 @@ function Form({ dispatch }) {
         </label>
       </div>
         <label data-testid="methodInput" className="methods" name="methods" onClick={handleClick}>
-          <span data-testid="get" className={method === 'get' ? "active" : null} id="get">GET</span>
-          <span data-testid="post" className={method === 'post' ? "active" : null} id="post">POST</span>
-          <span data-testid="put" className={method === 'put' ? "active" : null} id="put">PUT</span>
-          <span data-testid="delete" className={method === 'delete' ? "active" : null} id="delete">DELETE</span>
+        <Button data-testid="get" className={method === 'get' ? "active" : null} id="get">GET</Button>
+        <Button data-testid="post" className={method === 'post' ? "active" : null} id="post">POST</Button>
+        <Button data-testid="put" className={method === 'put' ? "active" : null} id="put">PUT</Button>
+        <Button data-testid="delete" className={method === 'delete' ? "active" : null} id="delete">DELETE</Button>
         </label>
         <label>
         {(method === 'post' || method === 'put') && <textarea rows="10" cols="50" onChange={handleChange} name='textInput'></textarea>}

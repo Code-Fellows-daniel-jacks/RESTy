@@ -6,6 +6,8 @@ $star-command-blue: rgba(0, 124, 190, 1);
 $ivory: rgba(255, 252, 232, 1);
 $silver: #C1C1C2;
 $dutch-white: #FDEAC4;
+$space-cadet: rgba(37, 40, 61, 1);
+
 
 /* SCSS Gradient */
 $gradient-top: linear-gradient(0deg, #0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
@@ -28,7 +30,7 @@ html, body {
 
 
 body {
-  background: $star-command-blue;
+  background: $space-cadet;
   height: 100%;
 
   #root {
@@ -55,8 +57,9 @@ body {
     left: 13.25rem;
     top: 1rem;
     padding: 1rem;
-    background-color: $ivory;
-    border: solid 1.5px $rich-black-fogra-29;
+    background-color: rgb(21, 21, 21);
+    color: $ivory;
+    border: solid 1.5px $space-cadet;
     box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
   }
 
