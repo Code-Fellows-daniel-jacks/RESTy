@@ -1,4 +1,5 @@
 import HistoryInstance from './historyInstance.jsx';
+import './history.scss';
 
 function History({ history, dispatch }) {
   return (

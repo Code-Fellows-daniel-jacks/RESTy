@@ -4,9 +4,11 @@ $orange-peel: rgba(255, 159, 28, 1);
 $honey-yellow: rgba(251, 179, 35, 1);
 $star-command-blue: rgba(0, 124, 190, 1);
 $ivory: rgba(255, 252, 232, 1);
-$rhythm: rgba(114, 124, 151, 1);
+$silver: #C1C1C2;
+$dutch-white: #FDEAC4;
 $rhythm-trans: rgba(114, 124, 151, .7);
 $space-cadet: rgba(37, 40, 61, 1);
+
 
 /* SCSS Gradient */
 $gradient-top: linear-gradient(0deg, #0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
@@ -19,54 +21,41 @@ $gradient-top-left: linear-gradient(225deg, #0e131fff, #ff9f1cff, #fbb323ff, #00
 $gradient-bottom-left: linear-gradient(315deg, #0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
 $gradient-radial: radial-gradient(#0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
 
-form {
-  position: absolute;
-  right: 13.3rem;
-  top: 2.62rem;
+.history {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  border: solid 2px $rich-black-fogra-29;
-  width: 32rem;
-  background-color: darken($star-command-blue, 25);
-  color: $ivory;
-  z-index: 10;
-  &:focus-within{
-    right: 13.7rem;
-    top: 2.3rem;
-    box-shadow: 5px 5px $rich-black-fogra-29;
+  align-items: center;
+  height: 40rem;
+  width: 30rem;
+  overflow-y: scroll;
+  background-color: rgb(21, 21, 21);
+  border: solid 1.5px $space-cadet;
+  box-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.301);
+  &:hover {
+    box-shadow: 1px 1px 10px 1px $ivory;
   }
-  &:hover{
-    right: 13.7rem;
-    top: 2.3rem;
-    box-shadow: 5px 5px $rich-black-fogra-29;
+  h1 {
+    text-align: center;
+    color: $ivory;
   }
-  .urlArea {
-    background-color: rgb(21, 21, 21);
-    border-bottom: 1px solid $orange-peel;
+  .even {
+    cursor: pointer;
+    background-color: $rhythm-trans;
+    border: solid 1.5px darken($honey-yellow, 1n0);
+    box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
+    position: relative;
+    padding: 5px;
+    width: 25rem;
+    margin-top: 2px;
   }
-  label {
-    display: flex;
-    justify-content: space-around;
-    margin-right: 1rem;
-    margin-left: 1rem;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
-
-    &.methods {
-      button {
-        cursor: pointer;
-        padding: .25rem .75rem;
-        background: $rhythm-trans;
-        border: solid .1px $rich-black-fogra-29;
-        box-shadow: .2px .2px $ivory;
-        color: $rich-black-fogra-29;
-        &:hover, &.active {
-          background: $rhythm;
-          box-shadow: 1px 1px $rich-black-fogra-29;
-          color: white;
-        }
-      }
-    }
+  .odd {
+    cursor: pointer;
+    background-color: $rhythm-trans;
+    border: solid 1.5px darken($orange-peel, 30);
+    box-shadow: 1.15px 1.15px rgba(0, 0, 0, 0.301);
+    position: relative;
+    padding: 5px;
+    width: 25rem;
+    margin-top: 2px;
   }
 }

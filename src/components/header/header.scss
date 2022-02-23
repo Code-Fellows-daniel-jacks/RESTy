@@ -6,7 +6,6 @@ $star-command-blue: rgba(0, 124, 190, 1);
 $ivory: rgba(255, 252, 232, 1);
 $rhythm: rgba(114, 124, 151, 1);
 $rhythm-trans: rgba(114, 124, 151, .7);
-$space-cadet: rgba(37, 40, 61, 1);
 
 /* SCSS Gradient */
 $gradient-top: linear-gradient(0deg, #0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
@@ -19,54 +18,19 @@ $gradient-top-left: linear-gradient(225deg, #0e131fff, #ff9f1cff, #fbb323ff, #00
 $gradient-bottom-left: linear-gradient(315deg, #0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
 $gradient-radial: radial-gradient(#0e131fff, #ff9f1cff, #fbb323ff, #007cbeff, #fffce8ff);
 
-form {
-  position: absolute;
-  right: 13.3rem;
-  top: 2.62rem;
+header {
+  background: darken($star-command-blue, 25);
+  border-bottom: 1px solid rgb(70, 70, 70);
+  color: #eee;
+  height: 6rem;
   display: flex;
   flex-direction: column;
-  margin: auto;
-  border: solid 2px $rich-black-fogra-29;
-  width: 32rem;
-  background-color: darken($star-command-blue, 25);
-  color: $ivory;
-  z-index: 10;
-  &:focus-within{
-    right: 13.7rem;
-    top: 2.3rem;
-    box-shadow: 5px 5px $rich-black-fogra-29;
-  }
-  &:hover{
-    right: 13.7rem;
-    top: 2.3rem;
-    box-shadow: 5px 5px $rich-black-fogra-29;
-  }
-  .urlArea {
-    background-color: rgb(21, 21, 21);
-    border-bottom: 1px solid $orange-peel;
-  }
-  label {
-    display: flex;
-    justify-content: space-around;
-    margin-right: 1rem;
-    margin-left: 1rem;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
-
-    &.methods {
-      button {
-        cursor: pointer;
-        padding: .25rem .75rem;
-        background: $rhythm-trans;
-        border: solid .1px $rich-black-fogra-29;
-        box-shadow: .2px .2px $ivory;
-        color: $rich-black-fogra-29;
-        &:hover, &.active {
-          background: $rhythm;
-          box-shadow: 1px 1px $rich-black-fogra-29;
-          color: white;
-        }
-      }
-    }
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  * {
+    padding: 0;
+    margin: 0;
   }
 }
